@@ -40,6 +40,9 @@ namespace NavySeal.Views
             _spriteDictionary = spriteDictionary;
         }
 
+        /// <summary>
+        /// Draw game, GameState = Playing
+        /// </summary>
         public void DrawGame()
         {
             _spriteBatch.Begin();
@@ -49,10 +52,23 @@ namespace NavySeal.Views
             _spriteBatch.End();
         }
 
+        /// <summary>
+        /// Draw splashscreen, GameState = SplashScreen
+        /// </summary>
+        public void DrawSplashScreen()
+        {
+            _spriteBatch.Begin();
+
+            var visualRect = _camera.VisualRectangle(new Vector2(0, 0), new Vector2(Level.MAX_LEVEL_TILE_X/2.0f, Level.MAX_LEVEL_TILE_Y/2.0f));
+            _spriteBatch.Draw(_spriteDictionary[TextureType.SplashScreen], visualRect, null, Color.White);
+
+            _spriteBatch.End();
+        }
+
         private void DrawPlayer(Player player)
         {
-            var rec = _camera.VisualRectangle(player.Position, player.Size);
-            _spriteBatch.Draw(_spriteDictionary[TextureType.Hero], rec, null, Color.White);
+            var visualRect = _camera.VisualRectangle(player.Position, player.Size);
+            _spriteBatch.Draw(_spriteDictionary[TextureType.Hero], visualRect, null, Color.White);
         }
 
         /// <summary>

@@ -28,7 +28,7 @@ namespace NavySeal.Models
 
         public GameModel()
         {
-            _gameState = GameState.Playing;
+            _gameState = GameState.SplashScreen;
             _level = new Level();
             _level.CreateLevel();
             _player = new Player();
@@ -162,6 +162,14 @@ namespace NavySeal.Models
         public void TogglePause()
         {
             _gameState =  _gameState == GameState.Pause ? GameState.Playing : GameState.Pause;
+        }
+
+        /// <summary>
+        /// End the splashscreen, change the gameState to a proper gamestate Show menu or start playing
+        /// </summary>
+        public void EndSplashScreen()
+        {
+            _gameState = GameState.Playing;
         }
     }
 }

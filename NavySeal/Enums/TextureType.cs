@@ -3,9 +3,13 @@
     public enum TextureType
     {
         /// <summary>
+        /// Splashscreen
+        /// </summary>
+        SplashScreen,
+        /// <summary>
         /// Hero
         /// </summary>
-        Hero = 0,
+        Hero,
 
     }
 }

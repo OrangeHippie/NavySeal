@@ -39,6 +39,16 @@ namespace NavySeal.Controllers
         private GameView _view;
 
         /// <summary>
+        /// splashtimer, how long have the splash been showing
+        /// </summary>
+        private float _splashTimer;
+
+        /// <summary>
+        /// How long shall the splashscreen be showing? in seconds
+        /// </summary>
+        private const int SHOW_SPLASH_SCREEN_TIMER = 5; 
+
+        /// <summary>
         /// Sprite dictionary
         /// </summary>
         private Dictionary<TextureType, Texture2D> _spriteDictonary;
@@ -46,9 +56,8 @@ namespace NavySeal.Controllers
         public GameController()
         {
             _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferWidth = 800;
-            _graphics.PreferredBackBufferHeight = 600;
             _model = new GameModel();
+            var uselessVariable = 10;
             _spriteDictonary = new Dictionary<TextureType, Texture2D>();
             Content.RootDirectory = "Content";
 
@@ -77,6 +86,7 @@ namespace NavySeal.Controllers
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _spriteDictonary.Add(TextureType.Hero, Content.Load<Texture2D>("hero"));
+            _spriteDictonary.Add(TextureType.SplashScreen, Content.Load<Texture2D>("splash-screen"));
 
             _camera = new Camera(_graphics.PreferredBackBufferHeight, _graphics.PreferredBackBufferWidth);
             _view = new GameView(_model, _spriteBatch, _spriteDictonary, _camera);
@@ -128,9 +138,14 @@ namespace NavySeal.Controllers
                     _model.StandStill();
 
                 _model.Update((float) gameTime.ElapsedGameTime.TotalSeconds);
+            }
 
+            if (_model.GetGameState == GameState.SplashScreen)
+            {
+                _splashTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-
+                if (_splashTimer > SHOW_SPLASH_SCREEN_TIMER)
+                    _model.EndSplashScreen();
             }
 
             if (_model.GetGameState == GameState.Playing || _model.GetGameState == GameState.Pause)
@@ -153,8 +168,36 @@ namespace NavySeal.Controllers
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            switch (_model.GetGameState)
+            {
+                case GameState.Playing:
+                    _view.DrawGame();
+                    break; 
+                case GameState.SplashScreen:
+                    //
+                    // Show splashscreen
+                    //
+                    _view.DrawSplashScreen();
+
+                    break;
+                case GameState.Menu:
+                    //
+                    // Show menu
+                    //
+
+                    break;
+                case GameState.Pause:
+                    //
+                    // Show pause
+                    //
+
+                    break;
+            }
+                
             
-            _view.DrawGame();
+
+
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

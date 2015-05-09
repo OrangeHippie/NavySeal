@@ -11,6 +11,10 @@ namespace NavySeal.Enums
     public enum GameState
     {
         /// <summary>
+        /// Splashscreen
+        /// </summary>
+        SplashScreen,
+        /// <summary>
         /// Playing
         /// </summary>
         Playing,
