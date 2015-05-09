@@ -1,11 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace NavySeal.Views
 {
+    /// <summary>
+    /// Game camera, get visual and logical size and position of an object
+    /// </summary>
     public class Camera
     {
         /// <summary>

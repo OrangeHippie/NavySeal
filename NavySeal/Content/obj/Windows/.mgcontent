@@ -4,7 +4,7 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Tomas/Documents/Visual Studio 2013/Projects/NavySeal/NavySeal/Content/hero.png</File>
-    <File>C:/Users/Tomas/Documents/Visual Studio 2013/Projects/NavySeal/NavySeal/Content/splash-screen.jpg</File>
+    <File>E:/Projects/NavySeal/NavySeal/Content/hero.png</File>
+    <File>E:/Projects/NavySeal/NavySeal/Content/splash-screen.jpg</File>
   </SourceFiles>
 </SourceFileCollection>

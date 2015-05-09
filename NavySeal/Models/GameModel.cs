@@ -30,7 +30,6 @@ namespace NavySeal.Models
         {
             _gameState = GameState.SplashScreen;
             _level = new Level();
-            _level.CreateLevel();
             _player = new Player();
             
         }

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace NavySeal.Enums
 {
+    /// <summary>
+    /// Tiletype, what kind of tile it is
+    /// </summary>
     public enum TileType
     {
         EMPTY = 0,

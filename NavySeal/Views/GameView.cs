@@ -13,25 +13,31 @@ namespace NavySeal.Views
         /// <summary>
         /// Game camera
         /// </summary>
-        private Camera _camera;
+        private readonly Camera _camera;
 
         /// <summary>
         /// Gamemodel
         /// </summary>
-        private GameModel _model;
+        private readonly GameModel _model;
 
         /// <summary>
         /// A dictionary with images (Text2d)
         /// </summary>
-        private Dictionary<TextureType, Texture2D> _spriteDictionary;
+        private readonly Dictionary<TextureType, Texture2D> _spriteDictionary;
 
         /// <summary>
         /// Spritebatch
         /// </summary>
-        private SpriteBatch _spriteBatch;
+        private readonly SpriteBatch _spriteBatch;
 
 
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="spriteBatch"></param>
+        /// <param name="spriteDictionary"></param>
+        /// <param name="camera"></param>
         public GameView(GameModel model, SpriteBatch spriteBatch, Dictionary<TextureType, Texture2D> spriteDictionary, Camera camera)
         {
             _model = model;
@@ -65,29 +71,16 @@ namespace NavySeal.Views
             _spriteBatch.End();
         }
 
+        /// <summary>
+        /// Helper method, draw player
+        /// </summary>
+        /// <param name="player"></param>
         private void DrawPlayer(Player player)
         {
             var visualRect = _camera.VisualRectangle(player.Position, player.Size);
             _spriteBatch.Draw(_spriteDictionary[TextureType.Hero], visualRect, null, Color.White);
         }
 
-        /// <summary>
-        /// Check if player wants to move up
-        /// </summary>
-        /// <returns></returns>
-        public bool PlayerWantsToMoveUp()
-        {
-            return KeyStateHelper.CurrentKeyboardState.IsKeyDown(Keys.W);
-        }
-
-        /// <summary>
-        /// Check if player wants to move down
-        /// </summary>
-        /// <returns></returns>
-        public bool PlayerWantsToMoveDown()
-        {
-            return KeyStateHelper.CurrentKeyboardState.IsKeyDown(Keys.S);
-        }
 
         /// <summary>
         /// Check if player wants to move left
@@ -107,17 +100,23 @@ namespace NavySeal.Views
             return KeyStateHelper.CurrentKeyboardState.IsKeyDown(Keys.D);
         }
 
-        public bool PressingPause()
+        /// <summary>
+        /// Check if player wants to pause the game
+        /// </summary>
+        /// <returns></returns>
+        public bool PressedPause()
         {
             return KeyStateHelper.CurrentKeyboardState.IsKeyDown(Keys.P) && !KeyStateHelper.PrevoiusKeyboardState.IsKeyDown(Keys.P);
         }
 
+        /// <summary>
+        /// Check if player stands still
+        /// </summary>
+        /// <returns></returns>
         public bool PlayerStandStill()
         {
-            return !PlayerWantsToMoveDown() && 
-                    !PlayerWantsToMoveLeft() && 
-                    !PlayerWantsToMoveRight() &&
-                    !PlayerWantsToMoveUp(); 
+            return !PlayerWantsToMoveLeft() &&
+                   !PlayerWantsToMoveRight();
         }
 
     }

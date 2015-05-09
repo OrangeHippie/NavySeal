@@ -46,7 +46,7 @@ namespace NavySeal.Controllers
         /// <summary>
         /// How long shall the splashscreen be showing? in seconds
         /// </summary>
-        private const int SHOW_SPLASH_SCREEN_TIMER = 5; 
+        private const int SHOW_SPLASH_SCREEN_TIMER = 1; 
 
         /// <summary>
         /// Sprite dictionary
@@ -57,7 +57,6 @@ namespace NavySeal.Controllers
         {
             _graphics = new GraphicsDeviceManager(this);
             _model = new GameModel();
-            var uselessVariable = 10;
             _spriteDictonary = new Dictionary<TextureType, Texture2D>();
             Content.RootDirectory = "Content";
 
@@ -117,24 +116,11 @@ namespace NavySeal.Controllers
 
             if (_model.GetGameState == GameState.Playing)
             {
-
-                if (_view.PlayerWantsToMoveUp())
-                {
-                    _model.MoveUp();
-                }
-                else if (_view.PlayerWantsToMoveDown())
-                {
-                    _model.MoveDown();
-                }
-                else if (_view.PlayerWantsToMoveLeft())
-                {
+                if (_view.PlayerWantsToMoveLeft())
                     _model.MoveLeft();
-                }
-                else if (_view.PlayerWantsToMoveRight())
-                {
+                if (_view.PlayerWantsToMoveRight())
                     _model.MoveRight();
-                }
-                else
+                if(_view.PlayerStandStill())
                     _model.StandStill();
 
                 _model.Update((float) gameTime.ElapsedGameTime.TotalSeconds);
@@ -149,12 +135,8 @@ namespace NavySeal.Controllers
             }
 
             if (_model.GetGameState == GameState.Playing || _model.GetGameState == GameState.Pause)
-            {
-                if (_view.PressingPause())
-                {
+                if (_view.PressedPause())
                     _model.TogglePause();
-                }
-            }
 
 
 
@@ -175,7 +157,8 @@ namespace NavySeal.Controllers
                     _view.DrawGame();
                     break; 
                 case GameState.SplashScreen:
-                    //
+                    
+                //
                     // Show splashscreen
                     //
                     _view.DrawSplashScreen();

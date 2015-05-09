@@ -6,6 +6,11 @@ namespace NavySeal.Models
 {
     public class Level
     {
+        public Level()
+        {
+            CreateLevel();
+        }
+
         /// <summary>
         /// Total tiles x
         /// </summary>
