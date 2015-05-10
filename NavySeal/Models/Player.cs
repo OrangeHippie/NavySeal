@@ -2,29 +2,8 @@
 
 namespace NavySeal.Models
 {
-    public class Player
+    public class Player : Unit
     {
-
-        /// <summary>
-        /// Left top position
-        /// </summary>
-        public Vector2 Position { get; private set; }
-
-        /// <summary>
-        /// Player size
-        /// </summary>
-        public Vector2 Size { get; private set; }
-
-        /// <summary>
-        /// Player speed
-        /// </summary>
-        public Vector2 Speed { get; set; }
-
-        /// <summary>
-        /// Player life
-        /// </summary>
-        public int Life { get; private set; }
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -43,19 +22,10 @@ namespace NavySeal.Models
         }
 
         /// <summary>
-        /// Set new position on player, if collision happens
-        /// </summary>
-        /// <param name="position"></param>
-        public void NewCollisionPosition(Vector2 position)
-        {
-            Position = position;
-        }
-
-        /// <summary>
         /// Update player
         /// </summary>
         /// <param name="elapsedTimeSeconds"></param>
-        public void Update(float elapsedTimeSeconds)
+        public override void Update(float elapsedTimeSeconds)
         {
             Position = Position + Speed * elapsedTimeSeconds;
         }
