@@ -14,12 +14,12 @@ namespace NavySeal.Models
         /// <summary>
         /// Game level
         /// </summary>
-        private Level _level;
+        private readonly Level _level;
 
         /// <summary>
         /// player
         /// </summary>
-        private Player _player;
+        private readonly Player _player;
 
         /// <summary>
         /// Collision details
@@ -32,6 +32,17 @@ namespace NavySeal.Models
             _level = new Level();
             _player = new Player();
             
+        }
+
+        /// <summary>
+        /// Get level
+        /// </summary>
+        public Level Level
+        {
+            get
+            {
+                return _level;
+            }
         }
 
         /// <summary>
@@ -52,6 +63,7 @@ namespace NavySeal.Models
         /// <param name="elapsedTimeSeconds"></param>
         private void UpdatePlayer(float elapsedTimeSeconds)
         {
+            
             //
             // old position
             //
@@ -79,6 +91,11 @@ namespace NavySeal.Models
                 _collisionDetails = GetCollisionDetails(prevPosition, newPlayerPosition, _player.Size);
                 _player.NewCollisionPosition(_collisionDetails.PositionAfterCollision);
             }
+        }
+
+        private bool CollisionFromBelow(Vector2 position)
+        {
+            return false;
         }
 
         /// <summary>

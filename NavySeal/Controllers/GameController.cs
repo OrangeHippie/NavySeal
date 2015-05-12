@@ -116,6 +116,7 @@ namespace NavySeal.Controllers
 
             if (_model.GetGameState == GameState.Playing)
             {
+                
                 if (_view.PlayerWantsToMoveLeft())
                     _model.MoveLeft();
                 if (_view.PlayerWantsToMoveRight())

@@ -1,6 +1,7 @@
 ﻿
 using System;
 using Microsoft.Xna.Framework;
+using NavySeal.Enums;
 
 namespace NavySeal.Models
 {
@@ -64,6 +65,28 @@ namespace NavySeal.Models
         }
 
         /// <summary>
+        /// Can collide with tile
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public bool CanCollide(int x, int y)
+        {
+            return Tiles[x, y].CanCollide;
+        }
+
+        /// <summary>
+        /// Get tiletype 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public TileType GetTileType(int x, int y)
+        {
+            return Tiles[x, y].GetTileType;
+        }
+
+        /// <summary>
         /// Create level
         /// </summary>
         public void CreateLevel()
@@ -74,6 +97,9 @@ namespace NavySeal.Models
                 {
                     Tiles[x, y] = Tile.CreateEmptyTile();
                 }
+
+                Tiles[5, 5] = Tile.CreateWallTile();
+                Tiles[5, 6] = Tile.CreateWallTile();
             }
         }
     }

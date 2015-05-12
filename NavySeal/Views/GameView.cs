@@ -53,7 +53,9 @@ namespace NavySeal.Views
         {
             _spriteBatch.Begin();
 
+            DrawLevel();
             DrawPlayer(_model.GetPlayer()); 
+            
 
             _spriteBatch.End();
         }
@@ -69,6 +71,24 @@ namespace NavySeal.Views
             _spriteBatch.Draw(_spriteDictionary[TextureType.SplashScreen], visualRect, null, Color.White);
 
             _spriteBatch.End();
+        }
+
+        private void DrawLevel()
+        {
+            for(var x = 0; x <Level.MAX_LEVEL_TILE_X; x++)
+            {
+                for (var y = 0; y < Level.MAX_LEVEL_TILE_Y; y++)
+                {
+                    var levelPosition = new Vector2(x, y);
+                    var tileSize = new Vector2(0.5f, 0.5f);
+                    var visualRect = _camera.VisualRectangle(levelPosition, tileSize);
+
+                    if (_model.Level.GetTileType(x, y) == TileType.WALL)
+                    {
+                        _spriteBatch.Draw(_spriteDictionary[TextureType.Hero], visualRect, null, Color.White);           
+                    }
+                }
+            }
         }
 
         /// <summary>

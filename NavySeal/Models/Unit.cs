@@ -4,6 +4,10 @@ namespace NavySeal.Models
 {
     public abstract class Unit
     {
+        protected float Gravity
+        {
+            get { return 5.0f; }
+        }
         /// <summary>
         /// Left top position
         /// </summary>

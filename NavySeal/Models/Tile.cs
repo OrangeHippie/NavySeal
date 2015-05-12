@@ -46,5 +46,16 @@ namespace NavySeal.Models
         {
             get { return _tileType == TileType.WALL; }
         }
+
+        /// <summary>
+        /// Get tiletype of tile
+        /// </summary>
+        public TileType GetTileType
+        {
+            get
+            {
+                return _tileType;
+            }
+        }
     }
 }

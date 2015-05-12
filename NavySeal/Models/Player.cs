@@ -27,7 +27,7 @@ namespace NavySeal.Models
         /// <param name="elapsedTimeSeconds"></param>
         public override void Update(float elapsedTimeSeconds)
         {
-            Position = Position + Speed * elapsedTimeSeconds;
+            Position = (Position + Speed) * elapsedTimeSeconds;
         }
 
        
