@@ -8,6 +8,9 @@ namespace NavySeal.Models
         {
             get { return 5.0f; }
         }
+
+        public bool CanFall { get; set; }
+
         /// <summary>
         /// Left top position
         /// </summary>
@@ -36,7 +39,7 @@ namespace NavySeal.Models
         /// <summary>
         /// Is the unit jumping
         /// </summary>
-        public bool CanJumping { get; set; }
+        public bool CanJump { get; set; }
 
         /// <summary>
         /// Set new position on player, if collision happens

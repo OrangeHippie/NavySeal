@@ -75,6 +75,12 @@ namespace NavySeal.Models
             //
             var prevPosition = _player.Position;
 
+
+            if (CollisionFromBelow(prevPosition))
+                _player.CanFall = false;
+            else if (!_player.CanFall)
+                _player.CanFall = true;
+
             //
             // update player
             //
@@ -97,11 +103,14 @@ namespace NavySeal.Models
                 _collisionDetails = GetCollisionDetails(prevPosition, newPlayerPosition, _player.Size);
                 _player.NewCollisionPosition(_collisionDetails.PositionAfterCollision);
             }
+
+
         }
 
         private bool CollisionFromBelow(Vector2 position)
         {
-            return false;
+            return _level.CanCollide((int) position.X, (int) (position.Y + 1));
+
         }
 
         /// <summary>
@@ -116,12 +125,10 @@ namespace NavySeal.Models
             var collisionDetails = new CollisionDetails(prevPosition);
 
             var xPosition = new Vector2(newPosition.X, prevPosition.Y);
-            var yPosition = new Vector2(prevPosition.X, newPosition.Y);
 
             if (_level.CollidingAt(xPosition, size))
                 collisionDetails.PositionAfterCollision = xPosition;
-            if (_level.CollidingAt(yPosition, size))
-                collisionDetails.PositionAfterCollision = yPosition;
+
 
 
             return collisionDetails;
@@ -177,7 +184,7 @@ namespace NavySeal.Models
         /// </summary>
         public void JumpPlayer()
         {
-            _player.CanJumping = true;
+            _player.CanJump = true;
         }
 
         /// <summary>
