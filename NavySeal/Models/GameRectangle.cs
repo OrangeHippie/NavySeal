@@ -38,7 +38,7 @@ namespace NavySeal.Models
         public static GameRectangle CreateFromTopLeft(Vector2 topLeftPosition, Vector2 size)
         {
             var topLeft = topLeftPosition;
-            var bottomRight = topLeftPosition + size;
+            var bottomRight = topLeftPosition + (size * 2.0f);
 
             return new GameRectangle(topLeft, bottomRight);
         }

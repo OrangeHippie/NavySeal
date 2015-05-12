@@ -173,6 +173,14 @@ namespace NavySeal.Models
         }
 
         /// <summary>
+        /// Set player to jump
+        /// </summary>
+        public void JumpPlayer()
+        {
+            _player.CanJumping = true;
+        }
+
+        /// <summary>
         /// Gamestate
         /// </summary>
         /// <returns></returns>

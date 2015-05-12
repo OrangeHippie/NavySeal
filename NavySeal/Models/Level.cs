@@ -95,11 +95,13 @@ namespace NavySeal.Models
             {
                 for (int y = 0; y < MAX_LEVEL_TILE_Y; y++)
                 {
-                    Tiles[x, y] = Tile.CreateEmptyTile();
+                    if (y != MAX_LEVEL_TILE_Y - 1)
+                        Tiles[x, y] = Tile.CreateEmptyTile();
+                    else
+                        Tiles[x, y] = Tile.CreateWallTile();
                 }
 
-                Tiles[5, 5] = Tile.CreateWallTile();
-                Tiles[5, 6] = Tile.CreateWallTile();
+                
             }
         }
     }

@@ -121,6 +121,15 @@ namespace NavySeal.Views
         }
 
         /// <summary>
+        /// Check if player wants to jump
+        /// </summary>
+        /// <returns></returns>
+        public bool PlayerWantsToJump()
+        {
+            return KeyStateHelper.CurrentKeyboardState.IsKeyDown(Keys.Space);
+        }
+
+        /// <summary>
         /// Check if player wants to pause the game
         /// </summary>
         /// <returns></returns>

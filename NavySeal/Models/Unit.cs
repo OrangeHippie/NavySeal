@@ -14,6 +14,11 @@ namespace NavySeal.Models
         public Vector2 Position { get; protected set; }
 
         /// <summary>
+        /// Velocity
+        /// </summary>
+        public Vector2 Velocity { get; set; }
+
+        /// <summary>
         /// Player size
         /// </summary>
         public Vector2 Size { get; protected set; }
@@ -27,6 +32,11 @@ namespace NavySeal.Models
         /// Player life
         /// </summary>
         public int Life { get; protected set; }
+
+        /// <summary>
+        /// Is the unit jumping
+        /// </summary>
+        public bool CanJumping { get; set; }
 
         /// <summary>
         /// Set new position on player, if collision happens

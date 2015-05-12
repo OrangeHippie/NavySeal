@@ -124,6 +124,9 @@ namespace NavySeal.Controllers
                 if(_view.PlayerStandStill())
                     _model.StandStill();
 
+                if (_view.PlayerWantsToJump())
+                    _model.JumpPlayer(); 
+
                 _model.Update((float) gameTime.ElapsedGameTime.TotalSeconds);
             }
 
