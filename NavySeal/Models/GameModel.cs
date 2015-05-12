@@ -9,6 +9,9 @@ namespace NavySeal.Models
 {
     public class GameModel
     {
+        /// <summary>
+        /// Gamestate of game
+        /// </summary>
         private GameState _gameState; 
 
         /// <summary>
@@ -26,6 +29,9 @@ namespace NavySeal.Models
         /// </summary>
         private CollisionDetails _collisionDetails;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public GameModel()
         {
             _gameState = GameState.SplashScreen;
