@@ -115,6 +115,16 @@ namespace NavySeal.Models
             Tiles[8, 4] = Tile.CreateWallTile();
 
             Tiles[9, 3] = Tile.CreateWallTile();
+
+            Tiles[9, 2] = Tile.CreateWallTile();
+            Tiles[9, 1] = Tile.CreateWallTile();
+            Tiles[9, 0] = Tile.CreateWallTile();
+
+
+            Tiles[5, 13] = Tile.CreateWallTile();
+            Tiles[4, 12] = Tile.CreateWallTile();
+            Tiles[3, 11] = Tile.CreateWallTile();
+            Tiles[2, 10] = Tile.CreateWallTile();
         }
     }
 }

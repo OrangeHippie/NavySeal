@@ -56,6 +56,7 @@ namespace NavySeal.Controllers
         public GameController()
         {
             _graphics = new GraphicsDeviceManager(this);
+
             _model = new GameModel();
             _spriteDictonary = new Dictionary<TextureType, Texture2D>();
             Content.RootDirectory = "Content";
