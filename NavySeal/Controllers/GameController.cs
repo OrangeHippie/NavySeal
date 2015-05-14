@@ -111,8 +111,10 @@ namespace NavySeal.Controllers
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            KeyStateHelper.PrevoiusKeyboardState = KeyStateHelper.CurrentKeyboardState;
+            KeyStateHelper.PreviousKeyboardState = KeyStateHelper.CurrentKeyboardState;
             KeyStateHelper.CurrentKeyboardState = Keyboard.GetState();
+            KeyStateHelper.PreviousGamePadState = KeyStateHelper.CurrentGamePadState;
+            KeyStateHelper.CurrentGamePadState = GamePad.GetState(PlayerIndex.One);
 
             if (_model.GetGameState == GameState.Playing)
             {
@@ -124,7 +126,7 @@ namespace NavySeal.Controllers
                 if(_view.PlayerStandStill())
                     _model.StandStill();
 
-                if (_view.PlayerWantsToJump() && _model.GetPlayer().CanJump)
+                if (_view.PlayerWantsToJump() && !_model.GetPlayer().IsJumping)
                     _model.JumpPlayer(); 
 
                 _model.Update((float) gameTime.ElapsedGameTime.TotalSeconds);

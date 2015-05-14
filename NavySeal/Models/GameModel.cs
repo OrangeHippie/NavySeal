@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
@@ -73,13 +74,14 @@ namespace NavySeal.Models
             //
             // old position
             //
-            var prevPosition = _player.Position;
+            var prevPlayerPosition = _player.Position;
 
 
-            if (CollisionFromBelow(prevPosition))
-                _player.CanFall = false;
-            else if (!_player.CanFall)
-                _player.CanFall = true;
+            if (CollisionFromBelow(prevPlayerPosition) || _player.IsJumping)
+                _player.CanFall = false; 
+            else if (!_player.IsJumping)
+                _player.CanFall = true;   
+            
 
             //
             // update player
@@ -100,17 +102,33 @@ namespace NavySeal.Models
                 //
                 // if the new position is collision, set the player back to the old position
                 //
-                _collisionDetails = GetCollisionDetails(prevPosition, newPlayerPosition, _player.Size);
+                _collisionDetails = GetCollisionDetails(prevPlayerPosition, newPlayerPosition, _player.Size);
                 _player.NewCollisionPosition(_collisionDetails.PositionAfterCollision);
             }
 
 
         }
 
+        /// <summary>
+        /// Check if collide from bottom
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
         private bool CollisionFromBelow(Vector2 position)
         {
-            return _level.CanCollide((int) position.X, (int) (position.Y + 1));
 
+            return _level.CanCollide((int) Math.Ceiling(position.X), (int) (position.Y + 1)) || _level.CanCollide((int) position.X, (int) (position.Y + 1)); 
+
+        }
+
+        private bool CollisionFromRight(Vector2 position, Vector2 size)
+        {
+            return _level.CanCollide((int)(position.X + (size.X * 2)), (int)position.Y);
+        }
+
+        private bool CollisionFromLeft(Vector2 position, Vector2 size)
+        {
+            return _level.CanCollide((int)(position.X + (size.X * 2) - 1), (int)position.Y);
         }
 
         /// <summary>
@@ -124,11 +142,14 @@ namespace NavySeal.Models
         {
             var collisionDetails = new CollisionDetails(prevPosition);
 
-            var xPosition = new Vector2(newPosition.X, prevPosition.Y);
+            if (!CollisionFromRight(newPosition, size) && !CollisionFromLeft(newPosition, size))
+                collisionDetails.PositionAfterCollision = new Vector2(newPosition.X,
+                    collisionDetails.PositionAfterCollision.Y);
+            else
+                collisionDetails.PositionAfterCollision = new Vector2((float) Math.Round(collisionDetails.PositionAfterCollision.X),
+                    collisionDetails.PositionAfterCollision.Y);
 
-            if (_level.CollidingAt(xPosition, size))
-                collisionDetails.PositionAfterCollision = xPosition;
-
+            collisionDetails.PositionAfterCollision = new Vector2(collisionDetails.PositionAfterCollision.X, newPosition.Y);
 
 
             return collisionDetails;
@@ -184,7 +205,7 @@ namespace NavySeal.Models
         /// </summary>
         public void JumpPlayer()
         {
-            _player.CanJump = true;
+            _player.DoJump();
         }
 
         /// <summary>

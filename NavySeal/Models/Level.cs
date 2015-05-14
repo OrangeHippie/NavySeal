@@ -15,12 +15,12 @@ namespace NavySeal.Models
         /// <summary>
         /// Total tiles x
         /// </summary>
-        public const int MAX_LEVEL_TILE_X = 16;
+        public const int MAX_LEVEL_TILE_X = 32;
 
         /// <summary>
         /// Total tiles y
         /// </summary>
-        public const int MAX_LEVEL_TILE_Y = 9;
+        public const int MAX_LEVEL_TILE_Y = 18;
 
         /// <summary>
         /// The map
@@ -72,7 +72,10 @@ namespace NavySeal.Models
         /// <returns></returns>
         public bool CanCollide(int x, int y)
         {
-            return Tiles[x, y].CanCollide;
+            if(x >= 0 && y >=  0 && x < MAX_LEVEL_TILE_X && y < MAX_LEVEL_TILE_Y)
+                return Tiles[x, y].CanCollide;
+
+            return true;
         }
 
         /// <summary>
@@ -99,10 +102,19 @@ namespace NavySeal.Models
                         Tiles[x, y] = Tile.CreateEmptyTile();
                     else
                         Tiles[x, y] = Tile.CreateWallTile();
-                }
 
-                
+                }
             }
+
+            Tiles[5, 7] = Tile.CreateWallTile();
+
+            Tiles[6, 6] = Tile.CreateWallTile();
+
+            Tiles[7, 5] = Tile.CreateWallTile();
+
+            Tiles[8, 4] = Tile.CreateWallTile();
+
+            Tiles[9, 3] = Tile.CreateWallTile();
         }
     }
 }

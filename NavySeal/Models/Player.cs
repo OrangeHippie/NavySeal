@@ -21,6 +21,8 @@ namespace NavySeal.Models
             Velocity = new Vector2(0, 0);
             Size = new Vector2(0.5f, 0.5f);
             CanFall = true;
+            IsJumping = false;
+
         }
 
         /// <summary>
@@ -30,13 +32,13 @@ namespace NavySeal.Models
         public override void Update(float elapsedTimeSeconds)
         {
             Velocity = Speed * elapsedTimeSeconds;
-            Velocity = !CanJump ? new Vector2(Velocity.X, Gravity * elapsedTimeSeconds) : new Vector2(Velocity.X, 0);
 
-            if (!CanFall)
-                Velocity = new Vector2(Velocity.X, 0); 
-
+            if (CanFall)
+                Velocity = new Vector2(Velocity.X, Gravity * elapsedTimeSeconds);
+            
             Position += Velocity;
         }
+
 
        
 

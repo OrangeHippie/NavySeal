@@ -39,7 +39,18 @@ namespace NavySeal.Models
         /// <summary>
         /// Is the unit jumping
         /// </summary>
-        public bool CanJump { get; set; }
+        public bool IsJumping { get; set; }
+
+        /// <summary>
+        /// JumpSpeed
+        /// </summary>
+        public int JumpSpeed { get; protected set; }
+
+        public void DoJump()
+        {
+            IsJumping = true;
+            JumpSpeed = 5;
+        }
 
         /// <summary>
         /// Set new position on player, if collision happens

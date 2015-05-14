@@ -15,7 +15,6 @@ namespace NavySeal.Models
         /// <summary>
         /// Collision details
         /// </summary>
-        /// <param name="speed"></param>
         /// <param name="position"></param>
         public CollisionDetails(Vector2 position)
         {

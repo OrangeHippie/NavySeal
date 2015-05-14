@@ -15,12 +15,12 @@ namespace NavySeal.Views
         /// <summary>
         /// Max camera size in tiles x
         /// </summary>
-        private const int MAX_LOGICAL_TILE_X = 16;
+        private const int MAX_LOGICAL_TILE_X = 32;
         
         /// <summary>
         /// Max camera size in tiles y
         /// </summary>
-        private const int MAX_LOGICAL_TILE_Y = 9;
+        private const int MAX_LOGICAL_TILE_Y = 18;
 
         /// <summary>
         /// Window height (in pixels)

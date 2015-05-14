@@ -126,7 +126,7 @@ namespace NavySeal.Views
         /// <returns></returns>
         public bool PlayerWantsToJump()
         {
-            return KeyStateHelper.CurrentKeyboardState.IsKeyDown(Keys.Space);
+            return KeyStateHelper.CurrentKeyboardState.IsKeyDown(Keys.W);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace NavySeal.Views
         /// <returns></returns>
         public bool PressedPause()
         {
-            return KeyStateHelper.CurrentKeyboardState.IsKeyDown(Keys.P) && !KeyStateHelper.PrevoiusKeyboardState.IsKeyDown(Keys.P);
+            return KeyStateHelper.CurrentKeyboardState.IsKeyDown(Keys.P) && !KeyStateHelper.PreviousKeyboardState.IsKeyDown(Keys.P);
         }
 
         /// <summary>
